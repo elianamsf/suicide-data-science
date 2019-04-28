@@ -6,11 +6,12 @@ Created on Sat Apr 27 15:14:48 2019
 """
 
 import pandas as pd
-
+# Lê o csv:
 idh_base = pd.read_csv('Human Development Index (HDI).csv', encoding = 'latin1',
                        sep =',', engine = 'python', delimiter=',', skiprows=1)
+# Oderna os dados pelo index (opcional para o tratamento do enconding, mas obrigatório para gerar o novo csv):
 idh_base = idh_base.sort_index()
-
+# Retira as colunas vazias:
 idh_base = idh_base.drop(["Unnamed: 3","Unnamed: 5", "Unnamed: 7",
                           "Unnamed: 9", "Unnamed: 11", "Unnamed: 13",
                           "Unnamed: 15", "Unnamed: 17", "Unnamed: 19",
@@ -26,7 +27,7 @@ idh_base_2000_a_2015, y = (idh_base.iloc[:,12:28], idh_base.iloc[:,1])
 #recupera range dos anos
 anos = idh_base_2000_a_2015.columns
 anos =anos.tolist()#[0:28]
-#recupera lista de paises
+#recupera range de países
 paises = y.tolist()
 # Monta lista paises x ano:
 lista_anos = []
@@ -45,6 +46,5 @@ dataHDI = pd.DataFrame()
 dataHDI["Country"] = lista_paises
 dataHDI["year"] =lista_anos
 dataHDI['hdi'] = lista_idh
-# Exporta no CSV:
-
+# Exporta novo CSV:
 dataHDI.to_csv('hdi_new.csv', sep=',', encoding='utf-8')
