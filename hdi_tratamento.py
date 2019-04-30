@@ -47,4 +47,4 @@ dataHDI["Country"] = lista_paises
 dataHDI["year"] =lista_anos
 dataHDI['hdi'] = lista_idh
 # Exporta novo CSV:
-dataHDI.to_csv('hdi_new.csv', sep=',', encoding='utf-8')
+dataHDI.to_csv('hdi_new.csv', sep=':', encoding='utf-8')
